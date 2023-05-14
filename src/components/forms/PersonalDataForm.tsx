@@ -45,7 +45,7 @@ const PersonalDataForm = ({ pd, handlePersonalDataChange }: PersonalDataForm) =>
 				{pd && (
 					<>
 						<FormRow>
-							<div className="form-control w-1/2">
+							<div className="form-control w-full">
 								<label className="label">
 									<span className="label-text">Data de nascimento</span>
 								</label>
@@ -58,7 +58,7 @@ const PersonalDataForm = ({ pd, handlePersonalDataChange }: PersonalDataForm) =>
 									className="input input-bordered w-full"
 								/>
 							</div>
-							<div className="form-control w-1/2">
+							<div className="form-control w-full">
 								<label className="label">
 									<span className="label-text">Gênero</span>
 								</label>
@@ -90,7 +90,7 @@ const PersonalDataForm = ({ pd, handlePersonalDataChange }: PersonalDataForm) =>
 							</div>
 						</FormRow>
 						<FormRow>
-							<div className="form-control w-1/2">
+							<div className="form-control w-full">
 								<label className="label">
 									<span className="label-text">Endereço</span>
 								</label>
@@ -103,7 +103,7 @@ const PersonalDataForm = ({ pd, handlePersonalDataChange }: PersonalDataForm) =>
 									className="input input-bordered w-full"
 								/>
 							</div>
-							<div className="form-control w-1/2">
+							<div className="form-control w-full">
 								<label className="label">
 									<span className="label-text">CEP</span>
 								</label>
@@ -116,7 +116,7 @@ const PersonalDataForm = ({ pd, handlePersonalDataChange }: PersonalDataForm) =>
 							</div>
 						</FormRow>
 						<FormRow>
-							<div className="form-control w-1/2">
+							<div className="form-control w-full">
 								<label className="label">
 									<span className="label-text">Estado</span>
 								</label>
@@ -135,7 +135,7 @@ const PersonalDataForm = ({ pd, handlePersonalDataChange }: PersonalDataForm) =>
 									))}
 								</select>
 							</div>
-							<div className="form-control w-1/2">
+							<div className="form-control w-full">
 								<label className="label">
 									<span className="label-text">Cidade</span>
 								</label>

@@ -44,7 +44,7 @@ const DiversityForm = ({ div, handleDiversityChange }: DiversityForm) => {
 				{div && (
 					<>
                         <FormRow>
-                            <div className="form-control w-1/2">
+                            <div className="form-control w-full">
                                 <label className="label">
                                     <span className="label-text">Estado de origem</span>
                                 </label>
@@ -63,7 +63,7 @@ const DiversityForm = ({ div, handleDiversityChange }: DiversityForm) => {
                                     ))}
                                 </select>
                             </div>
-                            <div className="form-control w-1/2">
+                            <div className="form-control w-full">
                                 <label className="label">
                                     <span className="label-text">Cidade de origem</span>
                                 </label>
@@ -78,7 +78,7 @@ const DiversityForm = ({ div, handleDiversityChange }: DiversityForm) => {
                             </div>
                         </FormRow>
 						<FormRow>
-                        <div className="form-control w-1/2">
+                        <div className="form-control w-full">
                                 <label className="label">
                                     <span className="label-text">Pronomes</span>
                                 </label>
@@ -97,7 +97,7 @@ const DiversityForm = ({ div, handleDiversityChange }: DiversityForm) => {
                                     <option value="Prefiro não responder">Prefiro não responder</option>
                                 </select>
                             </div>
-                            <div className="form-control w-1/2">
+                            <div className="form-control w-full">
 								<label className="label">
 									<span className="label-text">Sexualidade</span>
 								</label>
@@ -119,7 +119,7 @@ const DiversityForm = ({ div, handleDiversityChange }: DiversityForm) => {
 							</div>
 						</FormRow>
 						<FormRow>
-							<div className="form-control w-1/2">
+							<div className="form-control w-full">
 								<label className="label">
 									<span className="label-text">Identidade de gênero</span>
 								</label>
@@ -137,7 +137,7 @@ const DiversityForm = ({ div, handleDiversityChange }: DiversityForm) => {
 									<option value="Prefiro não responder">Prefiro não responder</option>
 								</select>
 							</div>
-							<div className="form-control w-1/2">
+							<div className="form-control w-full">
 								<label className="label">
 									<span className="label-text">Cor ou raça</span>
 								</label>

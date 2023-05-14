@@ -33,7 +33,7 @@ const CertificationsForm = ({
 							deleteData={deleteCertification}
 						>
 							<FormRow>
-								<div className="form-control w-1/2">
+								<div className="form-control w-full">
 									<label className="label">
 										<span className="label-text">Tipo</span>
 									</label>
@@ -49,7 +49,7 @@ const CertificationsForm = ({
 										<option value="Trabalho voluntário">Trabalho voluntário</option>
 									</select>
 								</div>
-								<div className="form-control w-1/2">
+								<div className="form-control w-full">
 									<label className="label">
 										<span className="label-text">Título</span>
 									</label>

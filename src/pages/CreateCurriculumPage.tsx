@@ -399,6 +399,7 @@ const CreateCurriculumPage = () => {
 								</a>
 							</li>
 						))}
+						<span className="border-b w-full my-3"></span>
 						<li>
 							<label
 								htmlFor="my-modal"

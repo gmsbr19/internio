@@ -30,7 +30,7 @@ const LanguagesForm = ({
 							deleteData={deleteLanguage}
 						>
 							<FormRow>
-								<div className="form-control w-1/2">
+								<div className="form-control w-full">
 									<label className="label">
 										<span className="label-text">Idioma</span>
 									</label>
@@ -43,7 +43,7 @@ const LanguagesForm = ({
 										className="input input-bordered w-full"
 									/>
 								</div>
-								<div className="form-control w-1/2">
+								<div className="form-control w-full">
 									<label className="label">
 										<span className="label-text">Formação</span>
 									</label>
