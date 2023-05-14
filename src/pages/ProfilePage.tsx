@@ -2,25 +2,26 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Card from '../components/createSections/Card'
 import { Api } from '../services/api'
-import { getUserLocalStorage } from '../context/AuthProvider/util'
-import { ICandidate } from '../context/AuthProvider/types'
+import { getUserLocalStorage, setUserLocalStorage } from '../context/AuthProvider/util'
+import { ICandidate, IUser } from '../context/AuthProvider/types'
 import ProfileForm from '../components/forms/ProfileForm'
 import { Candidate } from '../types'
 
 const ProfilePage = () => {
 	const navigate = useNavigate()
-	const userData = getUserLocalStorage()
-	const candidateId = userData.id
+	const user: IUser = getUserLocalStorage()
 	const [candidateData, setCandidateData] = useState<ICandidate['data']>()
 
+
 	useEffect(() => {
-		getCandidate(candidateId)
+		setCandidateData(user.data)
+		
 	}, [])
 
 	const getCandidate = (id?: number) => {
-		Api.get(`/candidate/${id ? id : candidateId}`).then((res) => {
+		Api.get(`/candidate/${id ? id : candidateData?.id}`).then((res) => {
 			const data: Candidate = res.data
-			setCandidateData({
+			const dataObj: ICandidate["data"] = {
 				id: id as number,
 				name:
 					data.name &&
@@ -32,7 +33,9 @@ const ProfilePage = () => {
 				email: data.email,
 				phone: data.phone,
 				cpf: data.cpf.toString()
-			})
+			}
+			setCandidateData(dataObj)
+			setUserLocalStorage({...user, data: dataObj} as IUser)
 		})
 	}
 
@@ -86,6 +89,7 @@ const ProfilePage = () => {
 											Editar currículo
 										</a>
 									</li>
+									<span className="border-b w-full my-3"></span>
 									<li>
 										<a onClick={() => navigate('/logout')}>
 											<i className="bi bi-sign-turn-left"></i>
@@ -97,9 +101,9 @@ const ProfilePage = () => {
 						</div>
 						<Card title="Perfil">
 							<ProfileForm
-								candidateId={candidateId}
+								candidateId={candidateData?.id as number}
 								handleProfileChange={handleProfileChange}
-								pf={candidateData}
+								pf={{...candidateData, name: candidateData?.name ?? "", email: candidateData?.email ?? "", phone: candidateData?.phone ?? 0, cpf: candidateData?.cpf ?? ""}}
 								getCandidate={getCandidate}
 							/>
 						</Card>

@@ -8,8 +8,8 @@ export type Candidate = {
     professional: Professional[]
     languages: Language[]
     certifications: Certification[]
-    personal_data: PersonalData[]
-    diversity: Diversity[]
+    personal_data: PersonalData
+    diversity: Diversity
 }
 
 export type Academical = {

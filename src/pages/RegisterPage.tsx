@@ -1,7 +1,6 @@
 import { useState } from "react"
 import Register from "../components/register/Register"
 import RegisterCompany from "../components/register/RegisterCompany"
-import { Link } from "react-router-dom"
 import TopNav from "../components/TopNav"
 
 const REGISTERTYPES = ["Candidato", "Empresa"]

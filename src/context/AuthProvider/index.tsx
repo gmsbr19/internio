@@ -26,8 +26,8 @@ export const AuthProvider = ({ children }:IAuthProvider) => {
         if(response){
             const payload = {token: response.token, email, type, data: response.data}
             if(payload){
-                setUser(payload)
-                setUserLocalStorage({token: payload.token, email: payload.email, type: payload.type, id: payload.data?.id})
+                setUser({token: payload.token, email: payload.email, type: payload.type, id: payload.data?.id, data: payload?.data})
+                setUserLocalStorage({token: payload.token, email: payload.email, type: payload.type, id: payload.data?.id, data: payload?.data})
             }
         }
     }

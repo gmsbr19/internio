@@ -7,10 +7,11 @@ import {
 	Certification,
 	Language,
 	PersonalData,
-	Diversity
+	Diversity,
+	Candidate
 } from '../types'
-import { ICandidate } from '../context/AuthProvider/types'
-import { getUserLocalStorage } from '../context/AuthProvider/util'
+import { ICandidate, IUser } from '../context/AuthProvider/types'
+import { getUserLocalStorage, setUserLocalStorage } from '../context/AuthProvider/util'
 import { Api } from '../services/api'
 import { toast } from 'react-toastify'
 import ProfessionalsForm from '../components/forms/ProfessionalsForm'
@@ -49,7 +50,7 @@ type PersonalDataKeys = keyof PersonalData
 type DiversityKeys = keyof Diversity
 
 const CreateCurriculumPage = () => {
-	const userData = getUserLocalStorage()
+	const userData: IUser = getUserLocalStorage()
 	const candidateId = userData.id
 	const [candidateData, setCandidateData] = useState<ICandidate['data']>()
 	const [currentRoute, setCurrentRoute] = useState<string>('academicals')
@@ -57,12 +58,27 @@ const CreateCurriculumPage = () => {
 	const drawerToggle = useRef<HTMLInputElement>(null)
 
 	useEffect(() => {
-		getCandidate(candidateId)
+		setCandidateData(userData.data)
 	}, [])
 
 	const getCandidate = (id?: number) => {
-		Api.get(`/candidate/${id ? id : candidateId}`).then((res) => {
-			setCandidateData(res.data)
+		Api.get(`/candidate/${id ? id : candidateData?.id}`).then((res) => {
+			const data: Candidate = res.data
+			const dataObj: ICandidate["data"] = {
+				...data,
+				id: id as number,
+				name:
+					data.name &&
+					data.name
+						.toLowerCase()
+						.split(' ')
+						.map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+						.join(' '),
+				email: data.email,
+				phone: data.phone,
+				cpf: data.cpf.toString()
+			}
+			setUserLocalStorage({...userData, data: dataObj} as IUser)
 		})
 	}
 
@@ -82,6 +98,7 @@ const CreateCurriculumPage = () => {
 			if (res.status === 200) {
 				toast('Currículo salvo com sucesso.')
 			}
+			getCandidate()
 		})
 	}
 
@@ -166,7 +183,7 @@ const CreateCurriculumPage = () => {
 			start_date: '1900-01-01',
 			end_date: '1900-01-01',
 			activity_description: '',
-			candidate_id: candidateId
+			candidate_id: candidateId as number
 		}
 		handleAdd('professionals', baseProfessional)
 	}
@@ -183,7 +200,7 @@ const CreateCurriculumPage = () => {
 		const baseProfessional: Language = {
 			language: '',
 			level: '',
-			candidate_id: candidateId
+			candidate_id: candidateId as number
 		}
 		handleAdd('languages', baseProfessional)
 	}
@@ -205,7 +222,7 @@ const CreateCurriculumPage = () => {
 			description: '',
 			title: '',
 			type: '',
-			candidate_id: candidateId
+			candidate_id: candidateId as number
 		}
 		handleAdd('certifications', baseProfessional)
 	}

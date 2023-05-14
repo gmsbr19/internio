@@ -5,6 +5,7 @@ export interface IUser {
 	token?: string
 	type?: string
 	id?: number
+	data?: ICandidate | ICompanyData
 }
 
 export interface IContext extends IUser {

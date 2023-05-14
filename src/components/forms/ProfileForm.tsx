@@ -95,7 +95,7 @@ const ProfileForm = ({ pf, handleProfileChange, candidateId, getCandidate }: Pro
                                 type="text"
                                 mask="(99) 99999-9999"
                                 onChange={(e) => handleProfileChange('phone', e.target.value)}
-                                value={pf?.phone}
+                                value={pf?.phone == 0 ? "" : pf?.phone}
                                 required
                                 autoComplete="phone"
                                 className="input input-bordered w-full"
@@ -116,14 +116,14 @@ const ProfileForm = ({ pf, handleProfileChange, candidateId, getCandidate }: Pro
                             />
                         </div>
                     </FormRow>
-                    <div className="card-actions flex items-center justify-end gap-5">
-                        {difPass && <span className="text-red-600">{err}</span>}
-                        <button className="btn btn-primary" type="submit">
-                            {loading ? <Spinner /> : 'Salvar'}
-                        </button>
-                    </div>
                 </form>
 			</div>
+            <div className="card-actions flex items-center justify-end gap-5">
+                {difPass && <span className="text-red-600">{err}</span>}
+                <button className="btn btn-primary" type="submit">
+                    {loading ? <Spinner /> : 'Salvar'}
+                </button>
+            </div>
 		</>
 	)
 }

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Login from '../components/Login'
 import LoginCompany from '../components/LoginCompany'
-import { Link } from 'react-router-dom'
 import TopNav from '../components/TopNav'
 
 const LOGINTYPES = ['Candidato', 'Empresa']

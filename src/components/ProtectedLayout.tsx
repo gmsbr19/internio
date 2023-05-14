@@ -7,12 +7,12 @@ const ProtectedLayout = ({children}: {children: JSX.Element}) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!auth.email && !(auth.type === 'candidate')) {
-            navigate('/login')
+        if (!auth.email || auth.type === 'company') {
+            navigate('/')
         }
     })
 
-    if (!auth.email && !(auth.type === 'candidate')) {
+    if (!auth.email || auth.type === 'company') {
         return null
     }
 
