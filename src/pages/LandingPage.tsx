@@ -1,13 +1,12 @@
-import { FC } from "react";
-import { Link } from "react-router-dom";
+import { FC } from 'react'
+import TopNav from '../components/TopNav'
 
 const LandingPage: FC = () => {
-    return (
-        <div className="flex flex-col">
-            <Link to='/login'>Login</Link>
-            <Link to='/register'>Register</Link>
-        </div>
-    );
+	return (
+		<div className="flex flex-col">
+			<TopNav />
+		</div>
+	)
 }
- 
-export default LandingPage;
+
+export default LandingPage

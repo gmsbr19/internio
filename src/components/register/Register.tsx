@@ -6,6 +6,8 @@ import Spinner from '../ui/Spinner'
 import { useNavigate } from 'react-router-dom'
 import {toast} from 'react-toastify'
 import { useAuth } from '../../context/AuthProvider/useAuth'
+import { verifyCpf } from '../../functions/functions'
+import { useEffect } from 'react'
 
 const Register = () => {
     const [name, setName] = useState<string>('')
@@ -19,9 +21,20 @@ const Register = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const navigate = useNavigate()
     const auth = useAuth()
+
+    useEffect(() => {
+		if (auth.email) {
+			navigate('/profile')
+		}
+	})
     
     const formSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+        if(!verifyCpf(cpf.replace(/\D/g, ''))){
+            setErr('CPF inválido')
+            setDifPass(true)
+            return
+        }
         if(password !== confirmPassword){
             setErr('Senhas não coincidem')
             setDifPass(true)
@@ -35,7 +48,6 @@ const Register = () => {
             try {
                 Api.post('/candidates', {name, email, phone: phone.replace(/\D/g, ''), cpf: cpf.replace(/\D/g, ''), password})
                 .then(res => {
-                    console.log(res)
                     auth.authenticate(email, password, 'candidate')
                     if (res.status === 200){
                         navigate('/curriculum')
@@ -106,11 +118,11 @@ const Register = () => {
 					<InputMask
                         type="text"
                         mask="999.999.999-99"
-                        onChange={e => setCpf(e.target.value)}
+                        onChange={e => {setCpf(e.target.value)}}
                         value={cpf}
 						required
 						autoComplete="cpf"
-						className="input input-bordered w-full"/>
+						className={`input input-bordered w-full ${!verifyCpf(cpf.replace(/\D/g, '')) && cpf.replace(/\D/g, '').length > 10 ? "border-red-600" : ""}`}/>
 				</div>
             </FormRow>
             <FormRow>

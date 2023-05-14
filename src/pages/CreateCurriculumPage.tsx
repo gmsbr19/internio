@@ -76,7 +76,7 @@ const CreateCurriculumPage = () => {
 			personal_data: {
 				...candidateData?.personal_data,
 				cep: parseInt(candidateData?.personal_data?.cep.toString().replace(/\D/g, '') as string)
-			},		
+			},
 			diversities: candidateData?.diversities
 		}).then((res) => {
 			if (res.status === 200) {
@@ -92,7 +92,7 @@ const CreateCurriculumPage = () => {
 		value: string | boolean
 	) => {
 		if (candidateData) {
-			const updatedProp = [...candidateData[propName] as ArraysType]
+			const updatedProp = [...(candidateData[propName] as ArraysType)]
 			updatedProp[index] = {
 				...updatedProp[index],
 				[field]: value
@@ -107,7 +107,7 @@ const CreateCurriculumPage = () => {
 	const handleDelete = (i: number, propName: Prop) => {
 		if (candidateData) {
 			Api.delete(`/candidate/${candidateId}/${propName}/${i}`).then(() => {
-				const updatedProp = [...candidateData[propName] as ArraysType].filter((e) => e.id !== i)
+				const updatedProp = [...(candidateData[propName] as ArraysType)].filter((e) => e.id !== i)
 				setCandidateData({
 					...candidateData,
 					[propName]: updatedProp
@@ -122,7 +122,7 @@ const CreateCurriculumPage = () => {
 			if (candidateData) {
 				setCandidateData({
 					...candidateData,
-					[propName]: [...candidateData[propName] as ArraysType, base]
+					[propName]: [...(candidateData[propName] as ArraysType), base]
 				})
 			}
 		})
@@ -243,19 +243,20 @@ const CreateCurriculumPage = () => {
 				<div className="drawer-content flex flex-col">
 					<div className="w-full navbar bg-base-300">
 						<div className="flex-none md:hidden">
-							<label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
+							<label htmlFor="my-drawer-3" className="btn btn-ghost">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
+									className="h-5 w-5"
 									fill="none"
 									viewBox="0 0 24 24"
-									className="inline-block w-6 h-6 stroke-current"
+									stroke="currentColor"
 								>
 									<path
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										d="M4 6h16M4 12h16M4 18h16"
-									></path>
+										d="M4 6h16M4 12h8m-8 6h16"
+									/>
 								</svg>
 							</label>
 						</div>

@@ -48,26 +48,26 @@ const ProfilePage = () => {
 				<div className="drawer-content flex flex-col">
 					<div className="w-full navbar bg-base-300">
 						<div className="flex-none md:hidden">
-							<label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
+							<label htmlFor="my-drawer-3" className="btn btn-ghost">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
+									className="h-5 w-5"
 									fill="none"
 									viewBox="0 0 24 24"
-									className="inline-block w-6 h-6 stroke-current"
+									stroke="currentColor"
 								>
 									<path
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth="2"
-										d="M4 6h16M4 12h16M4 18h16"
-									></path>
+										d="M4 6h16M4 12h8m-8 6h16"
+									/>
 								</svg>
 							</label>
 						</div>
 						<div className="flex-1 px-2 mx-2">INTERN.IO</div>
 						<div className="flex-none hidden md:block">
-							<ul className="menu menu-horizontal">
-							</ul>
+							<ul className="menu menu-horizontal"></ul>
 						</div>
 					</div>
 					<div className="mx-auto w-full md:w-fit h-full gap-5 items-center justify-center flex">
@@ -114,7 +114,7 @@ const ProfilePage = () => {
 								Editar currículo
 							</a>
 						</li>
-                        <span className='border-b w-full my-3'></span>
+						<span className="border-b w-full my-3"></span>
 						<li>
 							<a onClick={() => navigate('/logout')}>
 								<i className="bi bi-sign-turn-left"></i>
