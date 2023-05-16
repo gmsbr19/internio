@@ -35,9 +35,11 @@ const estados = [
 type DiversityForm = {
     div: ICandidate['data']['diversities'] | undefined
 	handleDiversityChange: (field: keyof Diversity, value: string | boolean) => void
+	setCurrentRoute: React.Dispatch<React.SetStateAction<string>>
+	showSaveModal: () => void
 }
 
-const DiversityForm = ({ div, handleDiversityChange }: DiversityForm) => {
+const DiversityForm = ({ div, handleDiversityChange, setCurrentRoute, showSaveModal }: DiversityForm) => {
 	return (
 		<>
 			<div className="overflow-y-auto flex-grow">
@@ -92,7 +94,6 @@ const DiversityForm = ({ div, handleDiversityChange }: DiversityForm) => {
                                     </option>
                                     <option value="Ele/Dele">Ele/Dele</option>
                                     <option value="Ela/Dela">Ela/Dela</option>
-                                    <option value="Elu/Delu">Elu/Delu</option>
                                     <option value="Outro">Outro</option>
                                     <option value="Prefiro não responder">Prefiro não responder</option>
                                 </select>
@@ -171,6 +172,15 @@ const DiversityForm = ({ div, handleDiversityChange }: DiversityForm) => {
 						</FormRow>
 					</>
 				)}
+			</div>
+			<div className='flex w-full justify-between md:hidden pb-1 mt-1'>
+				<button className="btn btn-accent btn-outline font-bold flex items-center gap-2" onClick={() => setCurrentRoute('personal_data')}>
+					<i className="fa-solid fa-arrow-left fa-lg"></i>
+					anterior
+				</button>
+				<button className="btn btn-success font-bold flex items-center gap-2" onClick={() => showSaveModal()}>
+					salvar
+				</button>
 			</div>
 		</>
 	)

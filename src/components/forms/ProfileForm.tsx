@@ -49,7 +49,7 @@ const ProfileForm = ({ pf, handleProfileChange, candidateId, getCandidate }: Pro
 	}
 	return (
 		<>
-			<div className="overflow-y-auto flex-grow">
+			<div className="overflow-y-auto flex-grow p-4">
 				<form className="flex flex-col gap-2 w-full">
 					<FormRow>
 						<div className="form-control w-full">
@@ -118,7 +118,7 @@ const ProfileForm = ({ pf, handleProfileChange, candidateId, getCandidate }: Pro
 					</FormRow>
 				</form>
 			</div>
-			<div className="card-actions flex items-center justify-end gap-5">
+			<div className="card-actions flex items-center justify-end gap-5 pr-5 pb-5">
 				{difPass && <span className="text-red-600">{err}</span>}
 				<button className="btn btn-primary" onClick={() => submitUpdate()} type="submit">
 					{loading ? <Spinner /> : 'Salvar'}

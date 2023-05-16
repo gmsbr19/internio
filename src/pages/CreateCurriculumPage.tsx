@@ -56,6 +56,7 @@ const CreateCurriculumPage = () => {
 	const [currentRoute, setCurrentRoute] = useState<string>('academicals')
 	const navigate = useNavigate()
 	const drawerToggle = useRef<HTMLInputElement>(null)
+	const modal = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
 		setCandidateData(userData.data)
@@ -253,6 +254,10 @@ const CreateCurriculumPage = () => {
 		handleNAChange('diversities', field, value)
 	}
 
+	const showSaveModal = () => {
+		modal.current?.click()
+	}
+
 	return (
 		<div className="flex flex-col">
 			<div className="drawer">
@@ -289,7 +294,7 @@ const CreateCurriculumPage = () => {
 							</ul>
 						</div>
 					</div>
-					<div className="mx-auto w-full md:w-fit flex md:h-full gap-5 items-center justify-center ">
+					<div className="mx-auto w-full md:w-fit flex md:h-full gap-5 items-center justify-center p-2 md:p-0">
 						<div className="card w-fit bg-base-100 shadow-xl hidden md:flex">
 							<div className="card-body p-2">
 								<ul className="menu bg-base-100 w-56 p-2 rounded-box">
@@ -311,44 +316,44 @@ const CreateCurriculumPage = () => {
 							</div>
 						</div>
 						{currentRoute == 'academicals' && (
-							<Card title="Formações">
+							<Card title="Formações" addInfo={addAcademical}>
 								<AcademicalsForm
 									academicals={candidateData?.academicals ? [...candidateData.academicals] : []}
 									deleteAcademical={deleteAcademical}
-									addAcademical={addAcademical}
 									handleAcademicalChange={handleAcademicalChange}
+									setCurrentRoute={setCurrentRoute}
 								/>
 							</Card>
 						)}
 						{currentRoute == 'professionals' && (
-							<Card title="Experiências">
+							<Card title="Experiências" addInfo={addProfessional}>
 								<ProfessionalsForm
 									professionals={
 										candidateData?.professionals ? [...candidateData.professionals] : []
 									}
 									deleteProfessional={deleteProfessional}
-									addProfessional={addProfessional}
+									setCurrentRoute={setCurrentRoute}
 									handleProfessionalChange={handleProfessionalChange}
 								/>
 							</Card>
 						)}
 						{currentRoute == 'languages' && (
-							<Card title="Idiomas">
+							<Card title="Idiomas" addInfo={addLanguage}>
 								<LanguagesForm
 									languages={candidateData?.languages ? [...candidateData.languages] : []}
 									deleteLanguage={deleteLanguage}
-									addLanguage={addLanguage}
+									setCurrentRoute={setCurrentRoute}
 									handleLanguageChange={handleLanguageChange}
 								/>
 							</Card>
 						)}
 						{currentRoute == 'certifications' && (
-							<Card title="Certificações">
+							<Card title="Certificações" addInfo={addCertification}>
 								<CertificationsForm
 									certifications={
 										candidateData?.certifications ? [...candidateData.certifications] : []
 									}
-									addCertification={addCertification}
+									setCurrentRoute={setCurrentRoute}
 									deleteCertification={deleteCertification}
 									handleCertificationChange={handleCertificationChange}
 								/>
@@ -358,6 +363,7 @@ const CreateCurriculumPage = () => {
 							<Card title="Dados pessoais">
 								<PersonalDataForm
 									handlePersonalDataChange={handlePersonalDataChange}
+									setCurrentRoute={setCurrentRoute}
 									pd={candidateData?.personal_data}
 								/>
 							</Card>
@@ -366,13 +372,15 @@ const CreateCurriculumPage = () => {
 							<Card title="Diversidade">
 								<DiversityForm
 									handleDiversityChange={handleDiversityChange}
+									setCurrentRoute={setCurrentRoute}
 									div={candidateData?.diversities}
+									showSaveModal={showSaveModal}
 								/>
 							</Card>
 						)}
 
 						{/* Put this part before </body> tag */}
-						<input type="checkbox" id="my-modal" className="modal-toggle" />
+						<input type="checkbox" id="my-modal" ref={modal} className="modal-toggle" />
 						<div className="modal z-50">
 							<div className="modal-box">
 								<h3 className="font-bold text-lg">Aviso!</h3>
@@ -390,6 +398,7 @@ const CreateCurriculumPage = () => {
 							</div>
 						</div>
 					</div>
+					
 				</div>
 				<div className="drawer-side">
 					<label htmlFor="my-drawer-3" className="drawer-overlay"></label>
@@ -421,8 +430,8 @@ const CreateCurriculumPage = () => {
 						<li>
 							<label
 								htmlFor="my-modal"
-								onClick={() => drawerToggle.current?.click()}
-								className="btn btn-outline btn-primary"
+								onClick={() => showSaveModal()}
+								className="btn btn-outline btn-primary hidden md:block"
 							>
 								Salvar
 							</label>

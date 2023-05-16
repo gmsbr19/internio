@@ -7,14 +7,14 @@ import { useEffect } from 'react'
 type CertificationsForm = {
 	certifications: ICandidate['data']['certifications'] | undefined
 	handleCertificationChange: (index: number, field: keyof Certification, value: string) => void
-	addCertification: () => void
+	setCurrentRoute: React.Dispatch<React.SetStateAction<string>>
 	deleteCertification: (i: number) => void
 }
 
 const CertificationsForm = ({
 	certifications,
 	handleCertificationChange,
-	addCertification,
+	setCurrentRoute,
 	deleteCertification
 }: CertificationsForm) => {
 	useEffect(() => {
@@ -66,7 +66,7 @@ const CertificationsForm = ({
 							<FormRow>
 								<div className="form-control w-full">
 									<label className="label">
-										<span className="label-text">Início</span>
+										<span className="label-text">Descrição</span>
 									</label>
 									<textarea
 										required
@@ -80,9 +80,16 @@ const CertificationsForm = ({
 						</DataCollapse>
 					))}
 			</div>
-			<button className="btn" onClick={() => addCertification()}>
-				Adicionar
-			</button>
+			<div className='flex w-full justify-between md:hidden pb-1'>
+				<button className="btn btn-accent btn-outline font-bold flex items-center gap-2 ml-1" onClick={() => setCurrentRoute('languages')}>
+					<i className="fa-solid fa-arrow-left fa-lg"></i>
+					anterior
+				</button>
+				<button className="btn btn-success btn-outline font-bold flex items-center gap-2 mr-1" onClick={() => setCurrentRoute('personal_data')}>
+					próximo
+					<i className="fa-solid fa-arrow-right fa-lg"></i>
+				</button>
+			</div>
 		</>
 	)
 }

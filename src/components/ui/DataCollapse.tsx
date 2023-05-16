@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface DataCollapseProps {
 	children: React.ReactNode
@@ -10,14 +10,20 @@ interface DataCollapseProps {
 
 const DataCollapse: React.FC<DataCollapseProps> = ({ children, i, id, title, deleteData }) => {
 	const [hovering, setHovering] = useState<boolean>()
+	const openCheck = useRef<HTMLInputElement>(null)
+
+	useEffect(() => {
+		if(i === 0)
+		openCheck.current?.click()
+	}, [])
 
 	return (
 		<div
-			className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box h-full my-2"
+			className={`collapse collapse-arrow cursor-pointer border border-gray-500 bg-base-100 rounded-box h-full my-2 mx-1`}
 			onMouseEnter={() => setHovering(true)}
 			onMouseLeave={() => setHovering(false)}
 		>
-			<input type="checkbox" />
+			<input type="checkbox" ref={openCheck} />
 			<div className="collapse-title flex justify-between text-xl font-medium">
 				{`${title} ${i + 1}`}
 				<i
@@ -26,7 +32,7 @@ const DataCollapse: React.FC<DataCollapseProps> = ({ children, i, id, title, del
 				></i>
 			</div>
 			<div className="collapse-content">
-				<form className="flex flex-col gap-2 w-full min-w-max">{children}</form>
+				<form className="flex flex-col gap-1 w-full min-w-max">{children}</form>
 			</div>
 		</div>
 	)

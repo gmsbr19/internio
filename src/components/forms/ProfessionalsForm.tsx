@@ -10,15 +10,15 @@ type ProfessionalsForm = {
 		field: keyof Professional,
 		value: string | boolean
 	) => void
-	addProfessional: () => void
+	setCurrentRoute: React.Dispatch<React.SetStateAction<string>>
 	deleteProfessional: (i: number) => void
 }
 
 const ProfessionalsForm = ({
 	professionals,
 	handleProfessionalChange,
-	addProfessional,
-	deleteProfessional
+	deleteProfessional,
+	setCurrentRoute
 }: ProfessionalsForm) => {
 	return (
 		<>
@@ -106,7 +106,7 @@ const ProfessionalsForm = ({
 							<FormRow>
 								<div className="form-control w-full">
 									<label className="label">
-										<span className="label-text">Início</span>
+										<span className="label-text">Descrição</span>
 									</label>
 									<textarea
 										required
@@ -122,9 +122,16 @@ const ProfessionalsForm = ({
 						</DataCollapse>
 					))}
 			</div>
-			<button className="btn" onClick={() => addProfessional()}>
-				Adicionar
-			</button>
+			<div className='flex w-full justify-between md:hidden pb-1'>
+				<button className="btn btn-accent btn-outline font-bold flex items-center gap-2 ml-1" onClick={() => setCurrentRoute('academicals')}>
+					<i className="fa-solid fa-arrow-left fa-lg"></i>
+					anterior
+				</button>
+				<button className="btn btn-success btn-outline font-bold flex items-center gap-2 mr-1" onClick={() => setCurrentRoute('languages')}>
+					próximo
+					<i className="fa-solid fa-arrow-right fa-lg"></i>
+				</button>
+			</div>
 		</>
 	)
 }

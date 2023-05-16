@@ -6,14 +6,14 @@ import DataCollapse from '../ui/DataCollapse'
 type LanguagesForm = {
 	languages: ICandidate['data']['languages'] | undefined
 	handleLanguageChange: (index: number, field: keyof Language, value: string) => void
-	addLanguage: () => void
+	setCurrentRoute: React.Dispatch<React.SetStateAction<string>>
 	deleteLanguage: (i: number) => void
 }
 
 const LanguagesForm = ({
 	languages,
 	handleLanguageChange,
-	addLanguage,
+	setCurrentRoute,
 	deleteLanguage
 }: LanguagesForm) => {
 
@@ -63,9 +63,16 @@ const LanguagesForm = ({
 						</DataCollapse>
 					))}
 			</div>
-			<button className="btn" onClick={() => addLanguage()}>
-				Adicionar
-			</button>
+			<div className='flex w-full justify-between md:hidden pb-1'>
+				<button className="btn btn-accent btn-outline font-bold flex items-center gap-2 ml-1" onClick={() => setCurrentRoute('professionals')}>
+					<i className="fa-solid fa-arrow-left fa-lg"></i>
+					anterior
+				</button>
+				<button className="btn btn-success btn-outline font-bold flex items-center gap-2 mr-1" onClick={() => setCurrentRoute('certifications')}>
+					próximo
+					<i className="fa-solid fa-arrow-right fa-lg"></i>
+				</button>
+			</div>
 		</>
 	)
 }

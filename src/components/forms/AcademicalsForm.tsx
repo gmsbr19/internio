@@ -6,14 +6,14 @@ import DataCollapse from '../ui/DataCollapse'
 type AcademicalsForm = {
 	academicals: ICandidate['data']['academicals'] | undefined
 	handleAcademicalChange: (index: number, field: keyof Academical, value: string) => void
-	addAcademical: () => void
+	setCurrentRoute: React.Dispatch<React.SetStateAction<string>>
 	deleteAcademical: (i: number) => void
 }
 
 const AcademicalsForm = ({
 	academicals,
 	handleAcademicalChange,
-	addAcademical,
+	setCurrentRoute,
 	deleteAcademical
 }: AcademicalsForm) => {
 	return (
@@ -153,9 +153,12 @@ const AcademicalsForm = ({
 						</DataCollapse>
 					))}
 			</div>
-			<button className="btn" onClick={() => addAcademical()}>
-				Adicionar
-			</button>
+			<div className='flex w-full justify-end md:hidden pb-1'>
+				<button className="btn btn-success btn-outline font-bold flex items-center gap-2 mr-1" onClick={() => setCurrentRoute('professionals')}>
+					próximo
+					<i className="fa-solid fa-arrow-right fa-lg"></i>
+				</button>
+			</div>
 		</>
 	)
 }

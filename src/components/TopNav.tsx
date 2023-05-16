@@ -72,7 +72,7 @@ const TopNav: FunctionComponent = () => {
 						)}
 					</ul>
 				</div>
-				<a className="btn btn-ghost normal-case text-xl" onClick={() => navigate('/')}>ITERN.IO</a>
+				<a className="btn btn-ghost normal-case text-xl" onClick={() => navigate('/')}>INTERN.IO</a>
 			</div>
 			<div className="navbar-end hidden md:flex">
 				{auth.token && auth.type == 'candidate' ? (

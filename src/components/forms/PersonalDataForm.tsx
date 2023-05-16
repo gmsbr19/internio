@@ -36,9 +36,10 @@ const estados = [
 type PersonalDataForm = {
 	pd: ICandidate['data']['personal_data'] | undefined
 	handlePersonalDataChange: (field: keyof PersonalData, value: string | boolean) => void
+	setCurrentRoute: React.Dispatch<React.SetStateAction<string>>
 }
 
-const PersonalDataForm = ({ pd, handlePersonalDataChange }: PersonalDataForm) => {
+const PersonalDataForm = ({ pd, handlePersonalDataChange, setCurrentRoute }: PersonalDataForm) => {
 	return (
 		<>
 			<div className="overflow-y-auto flex-grow">
@@ -166,6 +167,16 @@ const PersonalDataForm = ({ pd, handlePersonalDataChange }: PersonalDataForm) =>
 						</FormRow>
 					</>
 				)}
+			</div>
+			<div className='flex w-full justify-between md:hidden pb-1 mt-1'>
+				<button className="btn btn-accent btn-outline font-bold flex items-center gap-2" onClick={() => setCurrentRoute('certifications')}>
+					<i className="fa-solid fa-arrow-left fa-lg"></i>
+					anterior
+				</button>
+				<button className="btn btn-success btn-outline font-bold flex items-center gap-2" onClick={() => setCurrentRoute('diversities')}>
+					próximo
+					<i className="fa-solid fa-arrow-right fa-lg"></i>
+				</button>
 			</div>
 		</>
 	)
