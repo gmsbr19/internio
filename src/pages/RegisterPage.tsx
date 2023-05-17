@@ -12,7 +12,7 @@ const LoginPage = () => {
         <div className="flex flex-col">
         <TopNav />
 		<div className="mx-auto w-full h-full flex flex-col items-center justify-center">
-			<div className="card w-96 bg-base-100 shadow-xl">
+			<div className="card bg-base-100 shadow-xl">
 				<div className="card-body">
 					<div className="tabs">
                         {REGISTERTYPES.map((e, i) => (

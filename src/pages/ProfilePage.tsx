@@ -15,13 +15,21 @@ const ProfilePage = () => {
 
 	useEffect(() => {
 		setCandidateData(user.data)
-		
 	}, [])
+
+	useEffect(() => {
+		updateLocalStorage()
+	}, [candidateData])
+
+	const updateLocalStorage = () => {
+		setUserLocalStorage({...user, data: candidateData as ICandidate})
+	}
 
 	const getCandidate = (id?: number) => {
 		Api.get(`/candidate/${id ? id : candidateData?.id}`).then((res) => {
 			const data: Candidate = res.data
 			const dataObj: ICandidate["data"] = {
+				...data,
 				id: id as number,
 				name:
 					data.name &&

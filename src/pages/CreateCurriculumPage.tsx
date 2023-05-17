@@ -56,11 +56,19 @@ const CreateCurriculumPage = () => {
 	const [currentRoute, setCurrentRoute] = useState<string>('academicals')
 	const navigate = useNavigate()
 	const drawerToggle = useRef<HTMLInputElement>(null)
-	const modal = useRef<HTMLDivElement>(null)
+	const modal = useRef<HTMLInputElement>(null)
 
 	useEffect(() => {
 		setCandidateData(userData.data)
 	}, [])
+
+	useEffect(() => {
+		updateLocalStorage()
+	}, [candidateData])
+
+	const updateLocalStorage = () => {
+		setUserLocalStorage({...userData, data: candidateData as ICandidate})
+	}
 
 	const getCandidate = (id?: number) => {
 		Api.get(`/candidate/${id ? id : candidateData?.id}`).then((res) => {
@@ -81,10 +89,14 @@ const CreateCurriculumPage = () => {
 			}
 			setUserLocalStorage({...userData, data: dataObj} as IUser)
 		})
+		.then(() => {
+			console.log(candidateData)
+			console.log(userData)
+		})
+
 	}
 
 	const updateCandidate = () => {
-		navigate('/profile')
 		Api.put(`/candidate/${candidateId}`, {
 			academicals: candidateData?.academicals,
 			professionals: candidateData?.professionals,
@@ -96,6 +108,7 @@ const CreateCurriculumPage = () => {
 			},
 			diversities: candidateData?.diversities
 		}).then((res) => {
+			navigate('/profile')
 			if (res.status === 200) {
 				toast('Currículo salvo com sucesso.')
 			}
