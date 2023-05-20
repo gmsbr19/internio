@@ -11,7 +11,7 @@ const LoginPage = () => {
 	return (
 		<div className="flex flex-col">
 			<TopNav />
-			<div className="mx-auto w-fit h-full flex flex-col items-center justify-center">
+			<div className="mx-auto w-fit h-full flex flex-col items-center justify-center mt-16">
 				<div className="card w-96 bg-base-100 shadow-xl">
 					<div className="card-body">
 						<div className="tabs">

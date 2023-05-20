@@ -1,7 +1,8 @@
 import { FunctionComponent } from 'react'
 import { useAuth } from '../context/AuthProvider/useAuth'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import internio from '../assets/text.png'
+import textblack from '../assets/textblack.png'
+import text from '../assets/text.png'
 
 const TopNav: FunctionComponent = () => {
 	const auth = useAuth()
@@ -9,14 +10,14 @@ const TopNav: FunctionComponent = () => {
     const navigate = useNavigate()
 
 	return (
-		<div className="navbar bg-base-100">
+		<div className="navbar z-50 fixed top-0 backdrop-blur-[1px]">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<label tabIndex={0} className="btn btn-ghost md:hidden">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							className="h-5 w-5"
-							fill="none"
+							fill="black"
 							viewBox="0 0 24 24"
 							stroke="currentColor"
 						>
@@ -30,7 +31,7 @@ const TopNav: FunctionComponent = () => {
 					</label>
 					<ul
 						tabIndex={0}
-						className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+						className="menu text-white menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 					>
 						{auth.token && auth.type == 'candidate' ? (
 							<>
@@ -74,7 +75,7 @@ const TopNav: FunctionComponent = () => {
 					</ul>
 				</div>
 				<a className="btn btn-ghost normal-case text-xl" onClick={() => navigate('/')}>
-                    <img src={internio} className='h-full' />
+                    <img src={location.pathname === '/' ? textblack : text} className='h-full' />
                 </a>
 			</div>
 			<div className="navbar-end hidden md:flex">

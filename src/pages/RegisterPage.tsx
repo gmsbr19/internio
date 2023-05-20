@@ -11,8 +11,8 @@ const LoginPage = () => {
 	return (
         <div className="flex flex-col">
         <TopNav />
-		<div className="mx-auto w-full h-full flex flex-col items-center justify-center">
-			<div className="card bg-base-100 shadow-xl">
+		<div className="mx-auto w-full h-full flex flex-col items-center justify-center mt-10">
+			<div className="card w-full md:w-auto bg-base-100 shadow-xl">
 				<div className="card-body">
 					<div className="tabs">
                         {REGISTERTYPES.map((e, i) => (
@@ -25,7 +25,7 @@ const LoginPage = () => {
 					{
                         registerType === 'Candidato' ? <Register /> : <RegisterCompany />
                     }
-				</div>
+				</div> 
 			</div>
 		</div>
         </div>

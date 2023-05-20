@@ -52,7 +52,7 @@ const CompanyPage: FC = () => {
 	}
 
 	return (
-		<div className="flex flex-col">
+		<div className="flex flex-col ">
 			<div className="drawer">
 				<input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
 				<div className="drawer-content flex flex-col">
