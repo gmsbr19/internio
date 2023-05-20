@@ -7,17 +7,17 @@ import { Link } from 'react-router-dom'
 
 const LandingPage: FC = () => {
 	return (
-		<div className="flex flex-col h-screen justify-between text-black bg-landing bg-no-repeat bg-fixed bg-center bg-cover w-full">
+		<div className="flex flex-col h-screen justify-between text-black bg-[url(https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-no-repeat bg-fixed bg-center bg-cover w-full">
 			<TopNav />
 			<main className="mt-16 p-5 h-full">
-				<div className="carousel h-full md:justify-between gap-2">
+				<div className="snap-x snap-mandatory bg-none w-full flex h-full overflow-x-auto md:justify-between gap-2">
 					<div
 						id="slide1"
-						className="card w-full md:w-[32%] carousel-item shadow-xl backdrop-blur-md"
+						className="card shrink-0 w-64 md:w-[32%] snap-center  backdrop-blur-md"
 					>
 						<div className="card-body">
-							<article className="prose text-black prose-h3:text-black">
-								<h3 className="card-title text-xl font-bold uppercase">o Estágio Perfeito</h3>
+							<article className="prose prose-p:text-justify prose-p:font-semibold text-black prose-h3:text-black">
+								<h3 className="card-title text-lg font-bold uppercase">o Estágio Perfeito</h3>
 								<p>
 									Nós entendemos que encontrar o estágio perfeito pode ser desafiador, mas estamos
 									aqui para facilitar esse processo para você. Nosso site oferece uma plataforma
@@ -25,31 +25,15 @@ const LandingPage: FC = () => {
 									em diversos setores e empresas renomadas.
 								</p>
 							</article>
-							<div className="absolute md:hidden flex justify-between transform -translate-y-1/2 left-5 right-5 bottom-0">
-								<a href="#slide1" className="">
-									
-								</a>
-								<a href="#slide2" className="btn btn-circle animate-ping">
-									❯
-								</a>
-							</div>
-							<div className="absolute md:hidden flex justify-between transform -translate-y-1/2 left-5 right-5 bottom-0">
-								<a href="#slide1" className="">
-									
-								</a>
-								<a href="#slide2" className="btn btn-circle">
-									❯
-								</a>
-							</div>
 						</div>
 					</div>
 					<div
 						id="slide2"
-						className="card w-full md:w-[32%] carousel-item shadow-xl backdrop-blur-md"
+						className="card shrink-0 w-64 md:w-[32%] snap-center  backdrop-blur-md"
 					>
 						<div className="card-body">
-							<article className="prose text-black prose-h3:text-black">
-								<h3 className="card-title text-xl font-bold uppercase">
+							<article className="prose prose-p:text-justify prose-p:font-semibold text-black prose-h3:text-black">
+								<h3 className="card-title text-lg font-bold uppercase">
 									Candidatura Simplificada
 								</h3>
 								<p>
@@ -60,31 +44,15 @@ const LandingPage: FC = () => {
 									potencial.
 								</p>
 							</article>
-							<div className="absolute md:hidden flex justify-between transform -translate-y-1/2 left-5 right-5 bottom-0">
-								<a href="#slide1" className="btn btn-circle">
-									❮
-								</a>
-								<a href="#slide3" className="btn btn-circle">
-									❯
-								</a>
-							</div>
-							<div className="absolute md:hidden flex justify-between transform -translate-y-1/2 left-5 right-5 bottom-0">
-								<a href="#slide1" className="btn btn-circle animate-ping">
-									❮
-								</a>
-								<a href="#slide3" className="btn btn-circle animate-ping">
-									❯
-								</a>
-							</div>
 						</div>
 					</div>
 					<div
 						id="slide3"
-						className="card w-full md:w-[32%] carousel-item shadow-xl backdrop-blur-md"
+						className="card shrink-0 w-64 md:w-[32%] snap-center  backdrop-blur-md"
 					>
 						<div className="card-body md:justify-between">
-							<article className="prose text-black prose-h3:text-black">
-								<h3 className="card-title text-xl font-bold uppercase">um Futuro Brilhante</h3>
+							<article className="prose prose-p:text-justify prose-p:font-semibold text-black prose-h3:text-black">
+								<h3 className="card-title text-lg font-bold uppercase">um Futuro Brilhante</h3>
 								<p>
 									Não perca mais tempo, comece a explorar as oportunidades de estágio disponíveis
 									agora mesmo! Estamos ansiosos para fazer parte da sua história profissional e
@@ -92,22 +60,6 @@ const LandingPage: FC = () => {
 									futuro brilhante!
 								</p>
 							</article>
-							<div className="absolute md:hidden flex justify-between transform -translate-y-1/2 left-5 right-5 bottom-0">
-								<a href="#slide2" className="btn btn-circle">
-									❮
-								</a>
-								<a href="#slide3" className="">
-									
-								</a>
-							</div>
-							<div className="absolute md:hidden flex justify-between transform -translate-y-1/2 left-5 right-5 bottom-0">
-								<a href="#slide2" className="btn btn-circle animate-ping">
-									❮
-								</a>
-								<a href="#slide3" className="">
-									
-								</a>
-							</div>
 							<div className="card-actions justify-end">
 								<Link to='/register' className="btn btn-primary">Comece já!</Link>
 							</div>
