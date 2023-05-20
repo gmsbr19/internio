@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 import { useAuth } from '../context/AuthProvider/useAuth'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import internio from '../assets/text.png'
 
 const TopNav: FunctionComponent = () => {
 	const auth = useAuth()
@@ -72,7 +73,9 @@ const TopNav: FunctionComponent = () => {
 						)}
 					</ul>
 				</div>
-				<a className="btn btn-ghost normal-case text-xl" onClick={() => navigate('/')}>INTERN.IO</a>
+				<a className="btn btn-ghost normal-case text-xl" onClick={() => navigate('/')}>
+                    <img src={internio} className='h-full' />
+                </a>
 			</div>
 			<div className="navbar-end hidden md:flex">
 				{auth.token && auth.type == 'candidate' ? (

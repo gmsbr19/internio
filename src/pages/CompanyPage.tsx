@@ -1,56 +1,54 @@
+import { FC, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import Card from '../components/createSections/Card'
-import { Api } from '../services/api'
 import { getUserLocalStorage, setUserLocalStorage } from '../context/AuthProvider/util'
-import { ICandidate, IUser } from '../context/AuthProvider/types'
-import ProfileForm from '../components/forms/ProfileForm'
-import { Candidate } from '../types'
+import { ICompanyData, IUser } from '../context/AuthProvider/types'
+import { Api } from '../services/api'
+import Card from '../components/createSections/Card'
+import CompanyForm from '../components/forms/CompanyForm'
 import internio from '../assets/text.png'
 
-const ProfilePage = () => {
+const CompanyPage: FC = () => {
 	const navigate = useNavigate()
 	const user: IUser = getUserLocalStorage()
-	const [candidateData, setCandidateData] = useState<ICandidate['data']>()
-
+	const [companyData, setCompanyData] = useState<ICompanyData['data']>()
 
 	useEffect(() => {
-		setCandidateData(user.data)
+		setCompanyData(user.data as ICompanyData['data'])
 	}, [])
 
 	useEffect(() => {
 		updateLocalStorage()
-	}, [candidateData])
+	}, [companyData])
 
 	const updateLocalStorage = () => {
-		setUserLocalStorage({...user, data: candidateData as ICandidate})
+		setUserLocalStorage({ ...user, data: companyData as ICompanyData['data'] })
 	}
 
-	const getCandidate = (id?: number) => {
-		Api.get(`/candidate/${id ? id : candidateData?.id}`).then((res) => {
-			const data: Candidate = res.data
-			const dataObj: ICandidate["data"] = {
+	const getCompany = (id?: number) => {
+		Api.get(`/candidate/${id ? id : companyData?.id}`).then((res) => {
+			const data: ICompanyData['data'] = res.data
+			const dataObj: ICompanyData['data'] = {
 				...data,
 				id: id as number,
-				name:
-					data.name &&
-					data.name
+				official_name:
+					data.official_name &&
+					data.official_name
 						.toLowerCase()
 						.split(' ')
 						.map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
 						.join(' '),
-				email: data.email,
-				phone: data.phone,
-				cpf: data.cpf.toString()
+				representative_email: data.representative_email,
+				representative_phone: data.representative_phone,
+				cnpj: data.cnpj.toString()
 			}
-			setCandidateData(dataObj)
-			setUserLocalStorage({...user, data: dataObj} as IUser)
+			setCompanyData(dataObj)
+			setUserLocalStorage({ ...user, data: dataObj } as IUser)
 		})
 	}
 
-	const handleProfileChange = (field: keyof ICandidate['data'], value: string | boolean) => {
-		const updatedData = { ...candidateData, [field]: value }
-		setCandidateData(updatedData)
+	const handleProfileChange = (field: keyof ICompanyData['data'], value: string | boolean) => {
+		const updatedData = { ...companyData, [field]: value }
+		setCompanyData(updatedData as ICompanyData['data'])
 	}
 
 	return (
@@ -78,8 +76,8 @@ const ProfilePage = () => {
 							</label>
 						</div>
 						<div className="flex-1 px-2 mx-2">
-							<img src={internio} className='h-full max-h-[46px]' />
-						</div>
+                            <img src={internio} className='h-full max-h-[46px]' />
+                        </div>
 						<div className="flex-none hidden md:block">
 							<ul className="menu menu-horizontal"></ul>
 						</div>
@@ -96,8 +94,8 @@ const ProfilePage = () => {
 									</li>
 									<li>
 										<a onClick={() => navigate('/curriculum')}>
-											<i className="bi bi-file-earmark-text"></i>
-											Editar currículo
+											<i className="bi bi-person-lines-fill"></i>
+											Ver candidatos
 										</a>
 									</li>
 									<span className="border-b w-full my-3"></span>
@@ -111,11 +109,17 @@ const ProfilePage = () => {
 							</div>
 						</div>
 						<Card title="Perfil">
-							<ProfileForm
-								candidateId={candidateData?.id as number}
+							<CompanyForm
+								companyId={companyData?.id as number}
 								handleProfileChange={handleProfileChange}
-								pf={{...candidateData, name: candidateData?.name ?? "", email: candidateData?.email ?? "", phone: candidateData?.phone ?? 0, cpf: candidateData?.cpf ?? ""}}
-								getCandidate={getCandidate}
+								pf={{
+									...companyData,
+									official_name: companyData?.official_name ?? '',
+									representative_email: companyData?.representative_email ?? '',
+									representative_phone: companyData?.representative_phone ?? 0,
+									cnpj: companyData?.cnpj ?? ''
+								} as ICompanyData['data']}
+								getCompany={getCompany}
 							/>
 						</Card>
 					</div>
@@ -125,8 +129,8 @@ const ProfilePage = () => {
 					<ul className="menu p-4 w-80 bg-base-100">
 						<li>
 							<a onClick={() => navigate('/curriculum')}>
-								<i className="bi bi-file-earmark-text"></i>
-								Editar currículo
+								<i className="bi bi-person-lines-fill"></i>
+								Ver candidatos
 							</a>
 						</li>
 						<span className="border-b w-full my-3"></span>
@@ -143,4 +147,4 @@ const ProfilePage = () => {
 	)
 }
 
-export default ProfilePage
+export default CompanyPage

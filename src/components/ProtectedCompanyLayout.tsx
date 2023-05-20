@@ -1,13 +1,23 @@
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider/useAuth";
+import {useEffect} from 'react'
 
-const ProtectedLayout = ({children}: {children: JSX.Element}) => {
+const ProtectedCompanyLayout = ({children}: {children: JSX.Element}) => {
     const auth = useAuth();
+    const navigate = useNavigate()
 
-    if (!auth.email && !(auth.type === 'company')) {
-        return <h1>Você não possui acesso ao painel de companhia.</h1>
+    useEffect(() => {
+        if (!auth.email || auth.type === 'candidate') {
+            navigate('/')
+        }
+    })
+
+    if (!auth.email || auth.type === 'candidate') {
+        return null
     }
+
 
     return children;
 }
  
-export default ProtectedLayout;
+export default ProtectedCompanyLayout;

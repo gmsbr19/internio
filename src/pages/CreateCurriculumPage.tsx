@@ -20,6 +20,7 @@ import CertificationsForm from '../components/forms/CertificationsForm'
 import PersonalDataForm from '../components/forms/PersonalDataForm'
 import DiversityForm from '../components/forms/DiversityForm'
 import { useNavigate } from 'react-router-dom'
+import internio from '../assets/text.png'
 
 const SECTIONS = [
 	{ icon: 'mortarboard', name: 'Formações', path: 'academicals' },
@@ -295,7 +296,9 @@ const CreateCurriculumPage = () => {
 								</svg>
 							</label>
 						</div>
-						<div className="flex-1 px-2 mx-2">INTERN.IO</div>
+						<div className="flex-1 px-2 mx-2">
+							<img src={internio} className='h-full max-h-[46px]' />
+						</div>
 						<div className="flex-none hidden md:block">
 							<ul className="menu menu-horizontal">
 								<li>

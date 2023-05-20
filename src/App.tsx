@@ -2,6 +2,7 @@ import {Routes, Route} from 'react-router-dom'
 import LoginPage from './pages/LoginPage'
 import { AuthProvider } from './context/AuthProvider'
 import ProtectedLayout from './components/ProtectedLayout'
+import ProtectedCompanyLayout from './components/ProtectedCompanyLayout'
 import ProfilePage from './pages/ProfilePage'
 import Logout from './components/Logout'
 import RegisterPage from './pages/RegisterPage'
@@ -10,6 +11,7 @@ import { ToastContainer } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css';
 import LandingPage from './pages/LandingPage'
+import CompanyPage from './pages/CompanyPage'
 
 function App() {
 
@@ -30,6 +32,11 @@ function App() {
             <ProtectedLayout>
               <ProfilePage />
             </ProtectedLayout>
+          } />
+          <Route path='/company' element={
+            <ProtectedCompanyLayout>
+              <CompanyPage />
+            </ProtectedCompanyLayout>
           } />
         </Routes>
       </AuthProvider>
