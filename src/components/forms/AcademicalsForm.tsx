@@ -133,11 +133,10 @@ const AcademicalsForm = ({
 									</div>
 								)}
 								{e.formation_type !== 'Fundamental' &&
-									e.formation_type !== 'Médio' &&
-									e.status !== 'Em andamento' && (
+									e.formation_type !== 'Médio' && (
 										<div className="form-control w-full">
 											<label className="label">
-												<span className="label-text">Fim</span>
+												<span className="label-text">Fim (ou previsão)</span>
 											</label>
 											<input
 												type="date"

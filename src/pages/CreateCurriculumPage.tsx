@@ -60,7 +60,7 @@ const CreateCurriculumPage = () => {
 	const modal = useRef<HTMLInputElement>(null)
 
 	useEffect(() => {
-		setCandidateData(userData.data)
+		setCandidateData(userData.data as Candidate)
 	}, [])
 
 	useEffect(() => {
@@ -68,7 +68,7 @@ const CreateCurriculumPage = () => {
 	}, [candidateData])
 
 	const updateLocalStorage = () => {
-		setUserLocalStorage({...userData, data: candidateData as ICandidate})
+		setUserLocalStorage({...userData, data: candidateData as Candidate})
 	}
 
 	const getCandidate = (id?: number) => {
@@ -89,10 +89,6 @@ const CreateCurriculumPage = () => {
 				cpf: data.cpf.toString()
 			}
 			setUserLocalStorage({...userData, data: dataObj} as IUser)
-		})
-		.then(() => {
-			console.log(candidateData)
-			console.log(userData)
 		})
 
 	}
@@ -173,7 +169,7 @@ const CreateCurriculumPage = () => {
 			degree: '',
 			start_date: '1900-01-01',
 			end_date: '1900-01-01',
-			candidate_id: candidateId
+			candidate_id: candidateId as number
 		}
 		handleAdd('academicals', baseAcademical)
 	}

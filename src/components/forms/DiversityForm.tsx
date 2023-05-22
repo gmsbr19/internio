@@ -165,6 +165,8 @@ const DiversityForm = ({ div, handleDiversityChange, setCurrentRoute, showSaveMo
 									<input
 										type="checkbox"
 										className="checkbox"
+										checked={div.share ?? false}
+										onChange={() => handleDiversityChange('share', !div.share)}
 									/>
 									<span className="label-text ml-4">Eu concordo em compartilhar esses dados com a Inter.io <br /> e com as empresas recrutadoras.</span>
 								</label>

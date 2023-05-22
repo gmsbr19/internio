@@ -1,5 +1,5 @@
 import FormRow from '../ui/FormRow'
-import { ICompanyData } from '../../context/AuthProvider/types'
+import { Company } from '../../context/AuthProvider/types'
 import InputMask from 'react-input-mask'
 import { Api } from '../../services/api'
 import { toast } from 'react-toastify'
@@ -7,8 +7,8 @@ import { useState } from 'react'
 import Spinner from '../ui/Spinner'
 
 type CompanyForm = {
-	pf: ICompanyData['data'] | undefined
-	handleProfileChange: (field: keyof ICompanyData['data'], value: string | boolean) => void
+	pf: Company | undefined
+	handleProfileChange: (field: keyof Company, value: string | boolean) => void
 	companyId: number
 	getCompany: (id?: number) => void
 }
@@ -27,7 +27,7 @@ const CompanyForm = ({ pf, handleProfileChange, companyId, getCompany }: Company
                     ...pf,
 					phone: pf.representative_phone?.toString().replace(/\D/g, ''),
 					cpf: pf.cnpj?.replace(/\D/g, '')
-				} as ICompanyData['data'])
+				} as Company)
 					.then((res) => {
 						console.log(res)
 						if (res.status === 200) {

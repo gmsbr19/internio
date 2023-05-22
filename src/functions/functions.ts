@@ -28,3 +28,32 @@ export const verifyCpf = (cpf: string): boolean => {
 		return false
 	}
 }
+
+export function formatPhoneNumber(phoneNumber: string) {
+	// Remove any non-digit characters from the phone number
+	const digitsOnly = phoneNumber.replace(/\D/g, '')
+
+	// Apply the formatting
+	const formattedPhoneNumber = digitsOnly.replace(/^(\d{2})(\d{4,5})(\d{4})$/, '($1) $2-$3')
+
+	return formattedPhoneNumber
+}
+
+export function calculateAge(dateOfBirth: string) {
+	const today = new Date()
+	const birthDate = new Date(dateOfBirth)
+
+	let age = today.getFullYear() - birthDate.getFullYear()
+
+	// Check if the birthday has occurred this year
+	const hasBirthdayPassed =
+		today.getMonth() > birthDate.getMonth() ||
+		(today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate())
+
+	// Reduce the age by 1 if the birthday hasn't occurred yet
+	if (!hasBirthdayPassed) {
+		age--
+	}
+
+	return age
+}

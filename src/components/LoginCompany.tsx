@@ -11,7 +11,7 @@ const Login = () => {
 
 	useEffect(() => {
 		if (auth.email) {
-			navigate('/profile')
+			navigate('/company')
 		}
 	})
 
@@ -25,7 +25,7 @@ const Login = () => {
                     setLoading(false)
                     setLoginMalSucedido(true)
                 } else {
-                    navigate('/profile')
+                    navigate('/company')
                 }
             })
 		} catch (error) {

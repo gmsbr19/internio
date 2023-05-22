@@ -11,11 +11,11 @@ import internio from '../assets/text.png'
 const ProfilePage = () => {
 	const navigate = useNavigate()
 	const user: IUser = getUserLocalStorage()
-	const [candidateData, setCandidateData] = useState<ICandidate['data']>()
+	const [candidateData, setCandidateData] = useState<Candidate>()
 
 
 	useEffect(() => {
-		setCandidateData(user.data)
+		setCandidateData(user.data as Candidate)
 	}, [])
 
 	useEffect(() => {
@@ -23,7 +23,7 @@ const ProfilePage = () => {
 	}, [candidateData])
 
 	const updateLocalStorage = () => {
-		setUserLocalStorage({...user, data: candidateData as ICandidate})
+		setUserLocalStorage({...user, data: candidateData as Candidate})
 	}
 
 	const getCandidate = (id?: number) => {
@@ -50,7 +50,7 @@ const ProfilePage = () => {
 
 	const handleProfileChange = (field: keyof ICandidate['data'], value: string | boolean) => {
 		const updatedData = { ...candidateData, [field]: value }
-		setCandidateData(updatedData)
+		setCandidateData(updatedData as Candidate)
 	}
 
 	return (
@@ -114,7 +114,7 @@ const ProfilePage = () => {
 							<ProfileForm
 								candidateId={candidateData?.id as number}
 								handleProfileChange={handleProfileChange}
-								pf={{...candidateData, name: candidateData?.name ?? "", email: candidateData?.email ?? "", phone: candidateData?.phone ?? 0, cpf: candidateData?.cpf ?? ""}}
+								pf={candidateData}
 								getCandidate={getCandidate}
 							/>
 						</Card>

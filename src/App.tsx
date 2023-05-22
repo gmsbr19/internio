@@ -8,6 +8,7 @@ import Logout from './components/Logout'
 import RegisterPage from './pages/RegisterPage'
 import CreateCurriculumPage from './pages/CreateCurriculumPage'
 import { ToastContainer } from 'react-toastify'
+import CandidatesPage from './pages/CandidatesPage'
 
 import 'react-toastify/dist/ReactToastify.css';
 import LandingPage from './pages/LandingPage'
@@ -36,6 +37,11 @@ function App() {
           <Route path='/company' element={
             <ProtectedCompanyLayout>
               <CompanyPage />
+            </ProtectedCompanyLayout>
+          } />
+          <Route path='/candidates' element={
+            <ProtectedCompanyLayout>
+              <CandidatesPage />
             </ProtectedCompanyLayout>
           } />
         </Routes>

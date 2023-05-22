@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getUserLocalStorage, setUserLocalStorage } from '../context/AuthProvider/util'
-import { ICompanyData, IUser } from '../context/AuthProvider/types'
+import { Company, IUser } from '../context/AuthProvider/types'
 import { Api } from '../services/api'
 import Card from '../components/createSections/Card'
 import CompanyForm from '../components/forms/CompanyForm'
@@ -10,10 +10,10 @@ import internio from '../assets/text.png'
 const CompanyPage: FC = () => {
 	const navigate = useNavigate()
 	const user: IUser = getUserLocalStorage()
-	const [companyData, setCompanyData] = useState<ICompanyData['data']>()
+	const [companyData, setCompanyData] = useState<Company>()
 
 	useEffect(() => {
-		setCompanyData(user.data as ICompanyData['data'])
+		setCompanyData(user.data as Company)
 	}, [])
 
 	useEffect(() => {
@@ -21,13 +21,13 @@ const CompanyPage: FC = () => {
 	}, [companyData])
 
 	const updateLocalStorage = () => {
-		setUserLocalStorage({ ...user, data: companyData as ICompanyData['data'] })
+		setUserLocalStorage({ ...user, data: companyData as Company})
 	}
 
 	const getCompany = (id?: number) => {
 		Api.get(`/candidate/${id ? id : companyData?.id}`).then((res) => {
-			const data: ICompanyData['data'] = res.data
-			const dataObj: ICompanyData['data'] = {
+			const data: Company = res.data
+			const dataObj: Company = {
 				...data,
 				id: id as number,
 				official_name:
@@ -41,14 +41,14 @@ const CompanyPage: FC = () => {
 				representative_phone: data.representative_phone,
 				cnpj: data.cnpj.toString()
 			}
-			setCompanyData(dataObj)
-			setUserLocalStorage({ ...user, data: dataObj } as IUser)
+			setCompanyData(dataObj as Company)
+			setUserLocalStorage({ ...user, data: dataObj as Company})
 		})
 	}
 
-	const handleProfileChange = (field: keyof ICompanyData['data'], value: string | boolean) => {
+	const handleProfileChange = (field: keyof Company, value: string | boolean) => {
 		const updatedData = { ...companyData, [field]: value }
-		setCompanyData(updatedData as ICompanyData['data'])
+		setCompanyData(updatedData as Company)
 	}
 
 	return (
@@ -93,7 +93,7 @@ const CompanyPage: FC = () => {
 										</a>
 									</li>
 									<li>
-										<a onClick={() => navigate('/curriculum')}>
+										<a onClick={() => navigate('/candidates')}>
 											<i className="bi bi-person-lines-fill"></i>
 											Ver candidatos
 										</a>
@@ -118,7 +118,7 @@ const CompanyPage: FC = () => {
 									representative_email: companyData?.representative_email ?? '',
 									representative_phone: companyData?.representative_phone ?? 0,
 									cnpj: companyData?.cnpj ?? ''
-								} as ICompanyData['data']}
+								} as Company}
 								getCompany={getCompany}
 							/>
 						</Card>
@@ -128,7 +128,7 @@ const CompanyPage: FC = () => {
 					<label htmlFor="my-drawer-3" className="drawer-overlay"></label>
 					<ul className="menu p-4 w-80 bg-base-100">
 						<li>
-							<a onClick={() => navigate('/curriculum')}>
+							<a onClick={() => navigate('/candidates')}>
 								<i className="bi bi-person-lines-fill"></i>
 								Ver candidatos
 							</a>

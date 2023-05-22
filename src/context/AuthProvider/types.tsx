@@ -1,10 +1,5 @@
 import {
-	Academical,
-	Certification,
-	Diversity,
-	Language,
-	PersonalData,
-	Professional
+	Candidate,
 } from '../../types'
 
 export interface IUser {
@@ -12,11 +7,11 @@ export interface IUser {
 	token?: string
 	type?: string
 	id?: number
-	data?: ICandidate | ICompanyData['data']
+	data: Candidate | Company
 }
 
 export interface IContext extends IUser {
-	authenticate: (email: string, password: string, type: string) => Promise<void>
+	authenticate: (email?: string, password?: string, type?: string) => Promise<void>
 	logout: () => void
 }
 
@@ -25,37 +20,26 @@ export interface IAuthProvider {
 }
 
 export interface ICandidate {
-	data: {
-		cpf?: string
-		email?: string
-		id?: number
-		name?: string
-		phone?: number
-		academicals?: Academical[]
-		professionals?: Professional[]
-		languages?: Language[]
-		certifications?: Certification[]
-		personal_data?: PersonalData
-		diversities?: Diversity
-	}
+	data: Candidate
 	token: string
 	id?: number
 }
 
-export interface ICompanyData {
-	data: {
-		id: number
-		trading_name: string
-		official_name: string
-		cnpj: string
-		address: string
-		cep: string
-		city: string
-		state: string
-		representative_name: string
-		representative_email: string
-		representative_phone: number
-	}
+export interface ICompany {
+	data: Company
 	token: string
 	id?: number
+}
+export interface Company {
+	id: number
+	trading_name: string
+	official_name: string
+	cnpj: string
+	address: string
+	cep: string
+	city: string
+	state: string
+	representative_name: string
+	representative_email: string
+	representative_phone: number
 }

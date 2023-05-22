@@ -3,25 +3,26 @@ export type Candidate = {
     name: string
     email: string
     phone: number
-    cpf: number
-    academical: Academical[]
-    professional: Professional[]
+    cpf: string
+    area: string
+    academicals: Academical[]
+    professionals: Professional[]
     languages: Language[]
     certifications: Certification[]
     personal_data: PersonalData
-    diversity: Diversity
+    diversities: Diversity
 }
 
 export type Academical = {
     id?: number
     formation_type: string
-    degree?: string
+    degree: string
     status: string
-    course?: string
+    course: string
     institution: string
-    start_date?: string
+    start_date: string
     end_date?: string
-    candidate_id?: number
+    candidate_id: number
 }
 
 export type Professional = {
@@ -73,4 +74,5 @@ export type Diversity = {
     gender: string
     color: string
     candidate_id?: number
+    share: boolean
 }
