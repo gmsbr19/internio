@@ -1,3 +1,4 @@
+import { Res } from '.'
 import {
 	Candidate,
 } from '../../types'
@@ -11,7 +12,7 @@ export interface IUser {
 }
 
 export interface IContext extends IUser {
-	authenticate: (email?: string, password?: string, type?: string) => Promise<void>
+	authenticate: (email?: string, password?: string, type?: string) => Promise<Res>
 	logout: () => void
 }
 

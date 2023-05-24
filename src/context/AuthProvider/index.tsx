@@ -3,7 +3,7 @@ import { IAuthProvider, IContext, IUser, Company } from "./types";
 import { CompanyLoginRequest, getUserLocalStorage, LoginRequest, setUserLocalStorage } from "./util";
 import { Candidate } from "../../types";
 
-type Res = {
+export type Res = {
     token?: string,
     data?: Candidate | Company
 }

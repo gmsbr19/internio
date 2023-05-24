@@ -8,8 +8,8 @@ interface CandidateDetailProps {
 
 const CandidateDetail: FC<CandidateDetailProps> = ({ c }) => {
 	return (
-		<div className="card w-[30rem] h-full bg-base-100 shadow-xl">
-			<div className="card-body overflow-y-auto p-2">
+		<div className="card w-[30rem] h-full bg-base-100 shadow-xl p-4 border border-gray-700">
+			<div className="card-body overflow-y-auto p-0">
 				<article className="prose prose-h3:m-0 prose-p:m-0">
 					<h2 className="mb-0">
 						{c.name &&
@@ -22,7 +22,7 @@ const CandidateDetail: FC<CandidateDetailProps> = ({ c }) => {
 					</h2>
 					<p>{c.area}</p>
                     <div className='flex gap-3 w-1/2'>
-                        <p>{c.personal_data.city}/{c.personal_data.state}</p>
+                        <p>{c.personal_data.city ? c.personal_data.city.trim().replace(c.personal_data.city[0], c.personal_data.city[0].toUpperCase()) : ''}/{c.personal_data.state}</p>
                         <p>{calculateAge(c.personal_data.birth)} anos</p>
                     </div>
                     <div className='flex font-bold gap-3'>
