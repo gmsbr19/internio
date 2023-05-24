@@ -78,7 +78,7 @@ const PersonalDataForm = ({ pd, handlePersonalDataChange, setCurrentRoute }: Per
 							</div>
 						</FormRow>
 						<FormRow>
-							<div className="form-control w-fit">
+							<div className="form-control w-fit mt-2">
 								<label className="label cursor-pointer">
 									<span className="label-text mr-4">Necessidades especiais</span>
 									<input

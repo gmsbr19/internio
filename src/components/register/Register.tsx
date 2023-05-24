@@ -56,10 +56,12 @@ const Register = () => {
 					password
 				})
 					.then((res) => {
-						auth.authenticate(email, password, 'candidate')
-						if (res.status === 200) {
-							navigate('/curriculum')
-							toast(res.data.message)
+                        if (res.status === 200) {
+                            auth.authenticate(email, password, 'candidate')
+                            .then(() => {
+                                navigate('/curriculum')
+                                toast(res.data.message)
+                            })
 						}
 						setLoading(false)
 					})

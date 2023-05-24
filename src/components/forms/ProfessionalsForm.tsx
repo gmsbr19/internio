@@ -106,7 +106,7 @@ const ProfessionalsForm = ({
 							<FormRow>
 								<div className="form-control w-full">
 									<label className="label">
-										<span className="label-text">Descrição</span>
+										<span className="label-text">Descrição da atividade</span>
 									</label>
 									<textarea
 										required

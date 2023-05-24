@@ -3,6 +3,11 @@ import { IAuthProvider, IContext, IUser, Company } from "./types";
 import { CompanyLoginRequest, getUserLocalStorage, LoginRequest, setUserLocalStorage } from "./util";
 import { Candidate } from "../../types";
 
+type Res = {
+    token?: string,
+    data?: Candidate | Company
+}
+
 export const AuthContext = createContext<IContext>({} as IContext)
 
 export const AuthProvider = ({ children }:IAuthProvider) => {
@@ -16,8 +21,8 @@ export const AuthProvider = ({ children }:IAuthProvider) => {
         }
     }, [])
 
-    async function authenticate (email?: string, password?: string, type?: string){
-        let response: {token?: string, data?: Candidate | Company} = {token: undefined, data: undefined}
+    async function authenticate (email?: string, password?: string, type?: string): Promise<Res>{
+        let response: Res = {token: undefined, data: undefined}
         if(type === "company"){
             response = await CompanyLoginRequest(email as string, password as string)
         } else if (type === "candidate"){
@@ -31,6 +36,8 @@ export const AuthProvider = ({ children }:IAuthProvider) => {
                 setUserLocalStorage({token: payload.token, email: payload.email, type: payload.type ?? '', id: payload.data?.id, data: payload?.data as Candidate | Company})
             }
         }
+
+        return response
     }
 
     function logout () {
